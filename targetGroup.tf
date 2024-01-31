@@ -48,19 +48,19 @@ resource "aws_lb_listener_rule" "private_app_app" {
 }
 
 # Public Listener Rule
-# resource "aws_lb_listener_rule" "public_app_rule" {
-#   count         = var.INTERNAL ? 0 : 1
-#   listener_arn  = data.terraform_remote_state.alb.outputs.PRIVATE_LISTENER_ARN
-#   priority      = random_integer.priority.result
+resource "aws_lb_listener_rule" "public_app_rule" {
+  count         = var.INTERNAL ? 0 : 1
+  listener_arn  = data.terraform_remote_state.alb.outputs.PRIVATE_LISTENER_ARN
+  priority      = random_integer.priority.result
 
-#   action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.app.arn
-#   }
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.app.arn
+  }
 
-#   condition {
-#     path_pattern {
-#       values = ["${var.COMPONENT}-${var.ENV}.${data.terraform_remote_state.vpc.outputs.PRIVATE_HOSTED_ZONE_NAME}"]
-#     }
-#   }
-# }
+  condition {
+    path_pattern {
+      values = ["${var.COMPONENT}-${var.ENV}.${data.terraform_remote_state.vpc.outputs.PRIVATE_HOSTED_ZONE_NAME}"]
+    }
+  }
+}
