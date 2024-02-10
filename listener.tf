@@ -1,5 +1,4 @@
 #Creates Listners for Public alb
-
 resource "aws_lb_listener" "public" {
   count             = var.INTERNAL ? 0 : 1
 
@@ -8,8 +7,8 @@ resource "aws_lb_listener" "public" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
-    target_group_arn = aws_lb_target_group.app.arn
+    type              = "forward"
+    target_group_arn  = aws_lb_target_group.app.arn
   }
 }
 

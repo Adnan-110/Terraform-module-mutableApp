@@ -1,5 +1,4 @@
 # Creates Security Group For Backend Components
-
 resource "aws_security_group" "allows_app" {
     name        = "roboshop-${var.COMPONENT}-${var.ENV}-security-group"
     description = "roboshop-${var.COMPONENT}-${var.ENV}-security-group"
