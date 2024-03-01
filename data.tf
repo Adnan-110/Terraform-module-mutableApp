@@ -1,6 +1,6 @@
 data "aws_ami" "image" {
   most_recent = true
-  name_regex  = "centos7-with-ansible"
+  name_regex  = "DevOps-LabImage-Centos-8"
   owners      = ["355449129696"] 
 }
 
